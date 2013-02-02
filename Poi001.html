@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="Shift_JIS">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+    <meta http-equiv="Content-Language" content="ja" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <title>poi's circle</title>
+    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+  </head>
+
+  <body onload="funcSet0()" BGCOLOR= 'rgb(50, 82, 122)'>  
+    <center>
+    <font color="#ffffff"><h1>Poi's circle</h1></font>
+    <form name="F1" action="#"> 
+    <font color="#99ff99"> 
+    r_length=<input type="text" name="T1" size="3" maxlength="4" value="100" />
+    r_angle=<input type="text" name="R01" size="4" maxlength="4"  value="0" />
+    r_rate=<input type="text" name="T6" size="2" maxlength="2" value="1" /> 
+    <BR>
+    r1_length=<input type="text" name="T2" size="3" maxlength="4" value="100" /> 
+    r1_angle=<input type="text" name="T5" size="4" maxlength="4" value="35" /> 
+    r1_rate=<input type="text" name="T3" size="2" maxlength="2" value="5" /> 
+    head_size=<input type="text" name="T4" size="2" maxlength="2" value="5" />   
+    </font><br /> 
+    <font color="#9999ff"> 
+    r_length=<input type="text" name="T7" size="3" maxlength="4" value="100" /> 
+    r_angle=<input type="text" name="R02" size="4" maxlength="4" value="180" /> 
+    r_rate=<input type="text" name="T12" size="2" maxlength="2" value="1" /> 
+    <BR>
+    r1_length=<input type="text" name="T8" size="3" maxlength="4" value="100" /> 
+    r1_angle=<input type="text" name="T11" size="4" maxlength="4" value="35" />
+    r1_rate=<input type="text" name="T9" size="2" maxlength="2" value="5" /> 
+    head_size=<input type="text" name="T10" size="2" maxlength="2" value="5" /> 
+    </font><br /> 
+    <font color="#ff9999"> 
+    wait_time(ms)=<input type="text" name="R03"size="4" maxlength="4" value="10" /> 
+    <BR>
+    <input type="button" value="LINE ON/OFF" onclick="funcLine()" />
+    <input type="button" value="RAINBOW ON/OFF" onclick="funcRainbow()" />
+    <BR>
+    <input type="button" value="ONE HAND" onclick="funcOne()" /> 
+    <input type="button" value="TWO HAND" onclick="funcTwo()" />
+    <BR>
+    <input type="button" value="SET" onclick="funcSet()" /> 
+    <input type="button" value="GO/STOP" onclick="funcWait()" /> 
+<!--
+    rate=<input type="text" name="T13" size="2" maxlength="2" />
+    i=<input type="text" name="T14" size="2" maxlength="2" />
+//--> 
+    </font></form> 
+  
+    <canvas id="c1" width="600" height="600"></canvas> 
+ 
+<script type="text/javascript"> 
+<!--
+function funcSet0() {
+   LinON=1; GoStop=0; OneTwoHand=1; RainbowON=1;
+   fcolorSet();
+
+   funcSet();
+   func();
+}
+
+function fcolorSet() {
+   color1 = new Array(3);
+   color2 = new Array(3);
+   lcolor1 = new Array(3);
+   lcolor2 = new Array(3);
+
+   color_canvas='rgb(50, 82, 122)'; // キャンバス色
+
+   color_arm2='rgb(0, 255, 200)'; //black 
+   color_arm1='rgb(119, 136, 153)'; // 
+　 lcolor_arm2='rgb(0, 255, 200)'; //black
+   lcolor_arm1='rgb(119, 136, 153)'; //
+
+   color2[0]='rgb(0, 0, 255)'; // blue
+   color1[0]='rgb(100, 149, 237)'; // 
+　 lcolor2[0]='rgb(0, 0, 255)'; //
+   lcolor1[0]='rgb(100, 149, 237)'; //
+
+   color2[1]='rgb(0, 128, 0)'; // green 
+   color1[1]='rgb(144, 238, 230)'; // 
+　 lcolor2[1]='rgb(0, 128, 0)'; // 
+   lcolor1[1]='rgb(144, 238, 230)'; //
+
+　 color2[2]='rgb(255, 0, 0)'; // red 
+   color1[2]='rgb(255, 182, 193)'; // 
+　 lcolor2[2]='rgb(255, 0, 0)'; //
+   lcolor1[2]='rgb(255, 182, 193)'; //
+
+　 color2[3]='rgb(255, 255, 0)'; // yellow 
+   color1[3]='rgb(245, 222, 179)'; // 
+　 lcolor2[3]='rgb(255, 255, 0)'; //
+   lcolor1[3]='rgb(245, 222, 179)'; //
+}
+
+function funcSet() {
+   i=0; j=0;
+   Color_i=0;
+   ii =0; ii0=0;
+
+   var canvas = document.getElementById('c1');
+   if ( ! canvas || ! canvas.getContext ) { return false; }
+   var ctx = canvas.getContext('2d');
+   ctx.fillStyle = color_canvas;
+   ctx.beginPath();
+   ctx.fillRect(0, 0, 600, 600);
+}
+   
+function funcLine() {
+   if (LinON ==1) { LinON=0; }else{ LinON=1; }
+   funcSet();
+}
+
+function funcRainbow() {
+   if (RainbowON ==1) { RainbowON=0; }else{ RainbowON=1; }
+   funcSet();
+}
+
+function funcWait() { if (GoStop == 1) { GoStop=0; }else{ GoStop=1; } }
+
+function funcOne() { OneTwoHand=0; funcSet(); }
+
+function funcTwo() { OneTwoHand=1; funcSet(); }
+
+// *** MAIN ****
+function func() {
+   rLength=parseInt(document.F1.T1.value);
+   r1Length=parseInt(document.F1.T2.value);
+   r1Rate=parseInt(document.F1.T3.value);
+   headSize=parseInt(document.F1.T4.value);
+   r1angle=parseInt(document.F1.T5.value);
+   rate=parseInt(document.F1.T6.value);
+   angl= parseInt(document.F1.R01.value);
+     
+   lrLength=parseInt(document.F1.T7.value);
+   lr1Length=parseInt(document.F1.T8.value);
+   lr1Rate=parseInt(document.F1.T9.value);
+   lheadSize=parseInt(document.F1.T10.value);
+   lr1angle=parseInt(document.F1.T11.value);
+   lrate=parseInt(document.F1.T12.value);
+   langl= parseInt(document.F1.R02.value);
+ 
+   waitTime= parseInt(document.F1.R03.value);
+    
+//   document.F1.T13.value= rate ;
+   ii=ii0 % 360;
+//   document.F1.T14.value= i;
+
+   i=i+rate*GoStop;
+   draw1(i);
+   j=j+lrate*GoStop;
+   if(OneTwoHand == 1){ draw2(j); }
+
+
+   if (Math.abs(i)>= 360) { i=0; j=0; }
+
+
+　 ii0=ii0+Math.abs(r1Rate*GoStop*RainbowON);
+   if(ii0 < 360) { Color_i=0; }
+   if(ii0 >= 360 && ii0 < 360*2) { Color_i=1; }
+   if(ii0 >= 360*2 && ii0 < 360*3) { Color_i=2; }
+   if(ii0 >= 360*3) { Color_i=0; ii0=0; }
+
+   setTimeout("func()", waitTime); 
+//  alert(i);
+}
+ 
+ 
+/* 円を描く */
+function draw1(i) {
+   var canvas = document.getElementById('c1');
+   if ( ! canvas || ! canvas.getContext ) { return false; }
+   var ctx = canvas.getContext('2d');
+
+   r0=rLength;
+   r10=r1Length;
+   rate0=rate;
+   r1Rate0=r1Rate;
+   r1angle0=r1angle;
+   headSize0=headSize;
+
+
+   i0=i+angl-rate0;
+   ctx.fillStyle = color_arm1;
+   ctx.strokeStyle=color_arm1;
+   draw_arm();
+
+   ctx.fillStyle = color1[Color_i];
+   ctx.strokeStyle=color1[Color_i];
+
+   if( i != 0 ){ draw_poi(); }
+
+   i0=i+angl+rate0;
+   ctx.fillStyle = color_arm1;
+   ctx.strokeStyle=color_arm1;
+   draw_arm();
+
+   ctx.fillStyle = color1[Color_i];
+   ctx.strokeStyle=color1[Color_i];
+
+   if( i != 0 ){ draw_poi(); }
+
+   i0=i+angl;
+   ctx.fillStyle = color_arm2;
+   ctx.strokeStyle=color_arm2;
+   draw_arm();
+
+   ctx.fillStyle = color2[Color_i];
+   ctx.strokeStyle=color2[Color_i];
+   draw_poi();
+
+}
+ 
+ 
+function draw2(j) {
+   var canvas = document.getElementById('c1');
+   if ( ! canvas || ! canvas.getContext ) { return false; }
+   var ctx = canvas.getContext('2d');
+ 
+   r0=lrLength;
+   r10=lr1Length;
+   r1Rate0=lr1Rate;
+   rate0=lrate;
+   r1angle0=lr1angle;
+   headSize0=lheadSize;
+ 
+   i0=j+langl-rate0;
+   ctx.fillStyle = lcolor_arm1;
+   ctx.strokeStyle=lcolor_arm1;
+   draw_arm();
+
+   ctx.fillStyle = lcolor1[Color_i];
+   ctx.strokeStyle=lcolor1[Color_i];
+   if( j != 0 ){ draw_poi(); }
+
+   i0=j+langl+rate0;
+   ctx.fillStyle = lcolor_arm1;
+   ctx.strokeStyle=lcolor_arm1;
+   draw_arm();
+
+   ctx.fillStyle = lcolor1[Color_i];
+   ctx.strokeStyle=lcolor1[Color_i];
+   if( j != 0  ){ draw_poi(); }
+
+   i0=j+langl;
+   ctx.fillStyle = lcolor_arm2;
+   ctx.strokeStyle=lcolor_arm2;
+   draw_arm();
+
+   ctx.fillStyle = lcolor2[Color_i];
+   ctx.strokeStyle=lcolor2[Color_i];
+   draw_poi();
+
+}
+
+function draw_arm() {
+  var canvas = document.getElementById('c1');
+  if ( ! canvas || ! canvas.getContext ) { return false; }
+  var ctx = canvas.getContext('2d');
+
+  x = r0 * Math.cos(i0 / 180 * Math.PI);  // X座標
+  y = r0 * Math.sin(i0 / 180 * Math.PI);  // Y座標
+  i00=i0+r1angle0;
+  x0 = r10 * Math.cos(i00*r1Rate0 / 180 * Math.PI);  // X座標
+  y0 = r10 * Math.sin(i00*r1Rate0 / 180 * Math.PI);  // Y座標
+  x1 = x + x0 + 300;
+  y1 = y + y0 + 300;
+  if(LinON ==1){
+    ctx.beginPath();
+    ctx.moveTo(300, 300);
+    ctx.lineTo(x+300, y+300);
+    ctx.stroke();
+  }
+}
+
+function draw_poi() {
+  var canvas = document.getElementById('c1');
+  if ( ! canvas || ! canvas.getContext ) { return false; }
+  var ctx = canvas.getContext('2d');
+
+
+  x = r0 * Math.cos(i0 / 180 * Math.PI);  // X座標
+  y = r0 * Math.sin(i0 / 180 * Math.PI);  // Y座標
+  i00=i0+r1angle0;
+  x0 = r10 * Math.cos(i00*r1Rate0 / 180 * Math.PI);  // X座標
+  y0 = r10 * Math.sin(i00*r1Rate0 / 180 * Math.PI);  // Y座標
+  x1 = x + x0 + 300;
+  y1 = y + y0 + 300;
+  ctx.beginPath();
+  ctx.arc(x1, y1, headSize0, 0, Math.PI*2, false);
+  ctx.fill(); 
+  if(LinON ==1){
+    ctx.beginPath();
+    ctx.moveTo(x+300, y+300);
+    ctx.lineTo(x1, y1);
+    ctx.stroke();
+  }
+}
+ 
+//-->
+</script>
+</body>
+</html>

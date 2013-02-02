@@ -71,31 +71,31 @@ function fcolorSet() {
    lcolor1 = new Array(3);
    lcolor2 = new Array(3);
 
-   color_canvas='rgb(50, 82, 122)'; // ÉLÉÉÉìÉoÉXêF
+   color_canvas='rgb(50, 82, 122)'; // „Ç≠„É£„É≥„Éê„ÇπËâ≤
 
    color_arm2='rgb(0, 255, 200)'; //black 
    color_arm1='rgb(119, 136, 153)'; // 
-Å@ lcolor_arm2='rgb(0, 255, 200)'; //black
+„ÄÄ lcolor_arm2='rgb(0, 255, 200)'; //black
    lcolor_arm1='rgb(119, 136, 153)'; //
 
    color2[0]='rgb(0, 0, 255)'; // blue
    color1[0]='rgb(100, 149, 237)'; // 
-Å@ lcolor2[0]='rgb(0, 0, 255)'; //
+„ÄÄ lcolor2[0]='rgb(0, 0, 255)'; //
    lcolor1[0]='rgb(100, 149, 237)'; //
 
    color2[1]='rgb(0, 128, 0)'; // green 
    color1[1]='rgb(144, 238, 230)'; // 
-Å@ lcolor2[1]='rgb(0, 128, 0)'; // 
+„ÄÄ lcolor2[1]='rgb(0, 128, 0)'; // 
    lcolor1[1]='rgb(144, 238, 230)'; //
 
-Å@ color2[2]='rgb(255, 0, 0)'; // red 
+„ÄÄ color2[2]='rgb(255, 0, 0)'; // red 
    color1[2]='rgb(255, 182, 193)'; // 
-Å@ lcolor2[2]='rgb(255, 0, 0)'; //
+„ÄÄ lcolor2[2]='rgb(255, 0, 0)'; //
    lcolor1[2]='rgb(255, 182, 193)'; //
 
-Å@ color2[3]='rgb(255, 255, 0)'; // yellow 
+„ÄÄ color2[3]='rgb(255, 255, 0)'; // yellow 
    color1[3]='rgb(245, 222, 179)'; // 
-Å@ lcolor2[3]='rgb(255, 255, 0)'; //
+„ÄÄ lcolor2[3]='rgb(255, 255, 0)'; //
    lcolor1[3]='rgb(245, 222, 179)'; //
 }
 
@@ -161,7 +161,7 @@ function func() {
    if (Math.abs(i)>= 360) { i=0; j=0; }
 
 
-Å@ ii0=ii0+Math.abs(r1Rate*GoStop*RainbowON);
+„ÄÄ ii0=ii0+Math.abs(r1Rate*GoStop*RainbowON);
    if(ii0 < 360) { Color_i=0; }
    if(ii0 >= 360 && ii0 < 360*2) { Color_i=1; }
    if(ii0 >= 360*2 && ii0 < 360*3) { Color_i=2; }
@@ -172,7 +172,7 @@ function func() {
 }
  
  
-/* â~Çï`Ç≠ */
+/* ÂÜÜ„ÇíÊèè„Åè */
 function draw1(i) {
    var canvas = document.getElementById('c1');
    if ( ! canvas || ! canvas.getContext ) { return false; }
@@ -264,11 +264,11 @@ function draw_arm() {
   if ( ! canvas || ! canvas.getContext ) { return false; }
   var ctx = canvas.getContext('2d');
 
-  x = r0 * Math.cos(i0 / 180 * Math.PI);  // Xç¿ïW
-  y = r0 * Math.sin(i0 / 180 * Math.PI);  // Yç¿ïW
+  x = r0 * Math.cos(i0 / 180 * Math.PI);  // XÂ∫ßÊ®ô
+  y = r0 * Math.sin(i0 / 180 * Math.PI);  // YÂ∫ßÊ®ô
   i00=i0+r1angle0;
-  x0 = r10 * Math.cos(i00*r1Rate0 / 180 * Math.PI);  // Xç¿ïW
-  y0 = r10 * Math.sin(i00*r1Rate0 / 180 * Math.PI);  // Yç¿ïW
+  x0 = r10 * Math.cos(i00*r1Rate0 / 180 * Math.PI);  // XÂ∫ßÊ®ô
+  y0 = r10 * Math.sin(i00*r1Rate0 / 180 * Math.PI);  // YÂ∫ßÊ®ô
   x1 = x + x0 + 300;
   y1 = y + y0 + 300;
   if(LinON ==1){
@@ -285,11 +285,11 @@ function draw_poi() {
   var ctx = canvas.getContext('2d');
 
 
-  x = r0 * Math.cos(i0 / 180 * Math.PI);  // Xç¿ïW
-  y = r0 * Math.sin(i0 / 180 * Math.PI);  // Yç¿ïW
+  x = r0 * Math.cos(i0 / 180 * Math.PI);  // XÂ∫ßÊ®ô
+  y = r0 * Math.sin(i0 / 180 * Math.PI);  // YÂ∫ßÊ®ô
   i00=i0+r1angle0;
-  x0 = r10 * Math.cos(i00*r1Rate0 / 180 * Math.PI);  // Xç¿ïW
-  y0 = r10 * Math.sin(i00*r1Rate0 / 180 * Math.PI);  // Yç¿ïW
+  x0 = r10 * Math.cos(i00*r1Rate0 / 180 * Math.PI);  // XÂ∫ßÊ®ô
+  y0 = r10 * Math.sin(i00*r1Rate0 / 180 * Math.PI);  // YÂ∫ßÊ®ô
   x1 = x + x0 + 300;
   y1 = y + y0 + 300;
   ctx.beginPath();
